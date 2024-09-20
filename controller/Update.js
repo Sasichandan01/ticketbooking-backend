@@ -14,7 +14,7 @@ const updateMovie = async (req, res) => {
       { "_id":id },
       {
         $set: {
-          "review": 999,
+          "review": review,
         },
       },
     );
