@@ -9,7 +9,9 @@ const updateMovie = async (req, res) => {
     if (!review) {
       return res.status(400).json({ message: "Review is required" });
     }
-
+      if (!mongoose.isValidObjectId(id)) {
+        return res.status(400).json({ message: "Invalid movie ID" });
+      }
     const updatedMovie = await User.collection.updateOne(
       { "_id":id },
       {
