@@ -4,21 +4,18 @@ const updateMovie = async (req, res) => {
   try {
     const { id } = req.params;
     const { review } = req.body;
-    console.log(review);
-   
+
     if (!review) {
       return res.status(400).json({ message: "Review is required" });
     }
-      if (!mongoose.isValidObjectId(id)) {
-        return res.status(400).json({ message: "Invalid movie ID" });
-      }
-    const updatedMovie = await User.collection.updateOne(
-      { "_id":id },
+
+    const updatedMovie = await User.findOneAndUpdate(
+      { _id: id },
       {
         $set: {
-          "review": review,
+          review: review,
         },
-      },
+      }
     );
     if (!updatedMovie) {
       return res.status(404).json({ message: "Movie not found" });
@@ -30,6 +27,5 @@ const updateMovie = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
-
 
 module.exports = updateMovie;
