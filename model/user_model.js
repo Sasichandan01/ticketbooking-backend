@@ -26,7 +26,7 @@ const detailSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: String,
+    type: Date,
     required: true,
   },
   count: {
@@ -41,7 +41,11 @@ const detailSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  review: {
+    type: String,
+    required: true,
+  },
 });
+const User = new mongoose.model("mveuserdetails", detailSchema);
 
-const User = new mongoose.model("mvedetails",detailSchema);
 module.exports=User;
