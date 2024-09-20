@@ -10,7 +10,6 @@ const home = async (req, res) => {
 const contact = async (req, res) => {
   try {
     const { name, mail, photo, title, time,city, date, count,cost,theater,review } = req.body;
-    
     const userCreated = await User.create({
       name,
       mail,

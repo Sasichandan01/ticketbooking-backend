@@ -4,11 +4,6 @@ const updateMovie = async (req, res) => {
   try {
     const { id } = req.params;
     const { review } = req.body;
-
-    if (!review) {
-      return res.status(400).json({ message: "Review is required" });
-    }
-
     const updatedMovie = await User.findOneAndUpdate(
       { _id: id },
       {
