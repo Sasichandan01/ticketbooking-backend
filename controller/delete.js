@@ -2,8 +2,8 @@ const User = require("../model/user_model");
 
 const deletemovie = async (req, res) => {
   try {
-    const { id } = req.params; 
-    const response=await User.findOneAndDelete({ _id: id }); 
+    const { id } = req.params;
+    const response = await User.findOneAndDelete({ _id: id });
     if (!response) {
       return res.status(404).json({ message: "Movie not found" });
     }
@@ -12,4 +12,4 @@ const deletemovie = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
-module.exports=deletemovie;
+module.exports = deletemovie;

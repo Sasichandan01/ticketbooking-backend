@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const detailSchema = new mongoose.Schema({
   name: {
@@ -48,4 +48,4 @@ const detailSchema = new mongoose.Schema({
 });
 const User = new mongoose.model("mveuserdetails", detailSchema);
 
-module.exports=User;
+module.exports = User;

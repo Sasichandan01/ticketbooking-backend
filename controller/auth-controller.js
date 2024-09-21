@@ -9,7 +9,19 @@ const home = async (req, res) => {
 };
 const contact = async (req, res) => {
   try {
-    const { name, mail, photo, title, time,city, date, count,cost,theater,review } = req.body;
+    const {
+      name,
+      mail,
+      photo,
+      title,
+      time,
+      city,
+      date,
+      count,
+      cost,
+      theater,
+      review,
+    } = req.body;
     const userCreated = await User.create({
       name,
       mail,
@@ -21,7 +33,7 @@ const contact = async (req, res) => {
       count,
       cost,
       theater,
-      review
+      review,
     });
     res.status(200).json({ message: req.body });
   } catch (error) {
