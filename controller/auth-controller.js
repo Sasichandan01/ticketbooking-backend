@@ -1,4 +1,4 @@
-const User = require("../model/user_model");
+const User = require("../model/ticket_model");
 
 const home = async (req, res) => {
   try {
@@ -22,7 +22,7 @@ const contact = async (req, res) => {
       theater,
       review,
     } = req.body;
-    const userCreated = await User.create({
+    const ticketCreated = await User.create({
       name,
       mail,
       photo,
@@ -37,7 +37,7 @@ const contact = async (req, res) => {
     });
     res.status(200).json({ message: req.body });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ error: "Server error" });
   }
 };
 module.exports = { home, contact };

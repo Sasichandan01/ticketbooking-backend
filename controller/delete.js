@@ -1,4 +1,4 @@
-const User = require("../model/user_model");
+const User = require("../model/ticket_model");
 
 const deletemovie = async (req, res) => {
   try {
