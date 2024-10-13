@@ -6,7 +6,7 @@ function generateToken(user){
         id:user.id,
         email:user.email
     };
-    return jwt.sign(payload,secretkey,{expiresIn:"1m"});
+    return jwt.sign(payload,secretkey,{expiresIn:"1d"});
 }
 
 function generateRefreshToken(user){
@@ -14,7 +14,7 @@ function generateRefreshToken(user){
         id:user.id,
         email:user.email
     };
-    return jwt.sign(payload,secretkey,{expiresIn:"1m"});
+    return jwt.sign(payload,secretkey,{expiresIn:"1d"});
 }
 
 function verifyToken(token){
