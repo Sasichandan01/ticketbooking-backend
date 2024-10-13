@@ -5,6 +5,7 @@ const router1=require("./router/user-router")
 const router2 = require("./router/ticket-router");
 const connectDb = require("./utils/db");
 const cors=require("cors");
+const PORT=process.env.PORT;
 const corsOptions = {
   origin: "*",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
@@ -22,7 +23,7 @@ app.get("/contact",(req,res)=>{
   res.send("No contact details");
 });
 connectDb().then(() => {
-  app.listen(5000, () => {
-    console.log("server is running on port 5000");
+  app.listen(PORT, () => {
+    console.log("server is running on port");
   });
 });
