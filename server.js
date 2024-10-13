@@ -6,7 +6,7 @@ const router2 = require("./router/ticket-router");
 const connectDb = require("./utils/db");
 const cors=require("cors");
 const corsOptions = {
-  origin: "http://localhost:3000", // Specify your frontend URL
+  origin: "*",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
 };
