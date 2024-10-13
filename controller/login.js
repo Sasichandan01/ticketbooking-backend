@@ -1,6 +1,6 @@
 const User = require("../model/user_model");
 const bcrypt = require("bcrypt");
-
+const { generateToken } = require("../utils/jwtUtils");
 const login = async (req, res) => {
   const { email, password } = req.query;
   try {
@@ -17,14 +17,18 @@ const login = async (req, res) => {
         .status(401)
         .json({ success: false, message: "Invalid credentials" });
     }
-
-    res.status(200).json({
+    const token = generateToken({
+      id: user._id,
+      email: user.email,
+    });
+    res.status(201).json({
       success: true,
       message: "Login successful",
       user: {
         id: user._id,
         name: user.name,
         email: user.email,
+        token: token,
       },
     });
   } catch (error) {
