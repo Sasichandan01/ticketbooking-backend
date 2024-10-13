@@ -29,27 +29,28 @@ const signup = async (req, res) => {
           message: "Invalid credentials",
         });
       }
-    }
-
-    const hashpassword = await bcrypt.hash(password, 10);
-
-    const userCreated = await User.create({
-      name: name,
-      email: email,
-      password: hashpassword,
-    });
-    const token = generateToken({id:userCreated._id,email:userCreated.email});
-    res.status(201).json({
-      success: true,
-      message: "User created successfully!",
-      user: {
+    } else {
+      const hashpassword = await bcrypt.hash(password, 10);
+      const userCreated = await User.create({
+        name: name,
+        email: email,
+        password: hashpassword,
+      });
+      const token = generateToken({
         id: userCreated._id,
-        name: userCreated.name,
         email: userCreated.email,
-        token: token,
-        
-      },
-    });
+      });
+      res.status(201).json({
+        success: true,
+        message: "User created successfully!",
+        user: {
+          id: userCreated._id,
+          name: userCreated.name,
+          email: userCreated.email,
+          token: token,
+        },
+      });
+    }
   } catch (error) {
     console.error("Signup/Login error:", error);
     res.status(500).json({
