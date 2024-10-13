@@ -7,17 +7,18 @@ const signup = async (req, res) => {
 
     const existingUser = await User.findOne({ email: email });
     const hashpassword = await bcrypt.hash(password, 10);
-    const token = generateToken({
-      id: userCreated._id,
-      email: userCreated.email,
-    });
+
     if (existingUser) {
       const isPasswordValid = await bcrypt.compare(
         password,
         existingUser.password
       );
-
+      
       if (isPasswordValid) {
+        const token = generateToken({
+          id: existingUser._id,
+          email: existingUser.email,
+        });
         return res.status(200).json({
           success: true,
           message: "Login successful",
@@ -41,7 +42,10 @@ const signup = async (req, res) => {
         email: email,
         password: hashpassword,
       });
-
+      const token = generateToken({
+        id: userCreated._id,
+        email: userCreated.email,
+      });
       res.status(201).json({
         success: true,
         message: "User created successfully!",
@@ -50,7 +54,7 @@ const signup = async (req, res) => {
           name: userCreated.name,
           email: userCreated.email,
           newuser: true,
-          token: token
+          token: token,
         },
       });
     }
