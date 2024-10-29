@@ -7,7 +7,9 @@ const login = async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      return res.status(404).json({ success: false, message: "No user found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Error: No user found" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -15,7 +17,7 @@ const login = async (req, res) => {
     if (!isPasswordValid) {
       return res
         .status(401)
-        .json({ success: false, message: "Invalid credentials" });
+        .json({ success: false, message: "Error: Invalid credentials" });
     }
     const token = generateToken({
       id: user._id,
@@ -35,7 +37,10 @@ const login = async (req, res) => {
     console.error("Login error:", error);
     res
       .status(500)
-      .json({ success: false, message: "Failed to process login request" });
+      .json({
+        success: false,
+        message: "Error: Failed to process login request",
+      });
   }
 };
 

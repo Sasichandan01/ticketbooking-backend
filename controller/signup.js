@@ -26,14 +26,14 @@ const signup = async (req, res) => {
             id: existingUser._id,
             name: existingUser.name,
             email: existingUser.email,
-            newuser: false,
+            newuser: 1,
             token: token,
           },
         });
       } else {
         return res.status(400).json({
           success: false,
-          message: "Invalid credentials",
+          message: "Error: Invalid credentials",
         });
       }
     } else {
@@ -53,16 +53,16 @@ const signup = async (req, res) => {
           id: userCreated._id,
           name: userCreated.name,
           email: userCreated.email,
-          newuser: true,
+          newuser: 0,
           token: token,
         },
       });
     }
   } catch (error) {
-    console.error("Signup/Login error:", error);
+    console.error("Error : Signup/Login error:", error);
     res.status(500).json({
       success: false,
-      message: "An error occurred during signup/login",
+      message: "Error : An error occurred during signup/login",
       error: error.message,
     });
   }
