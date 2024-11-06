@@ -31,6 +31,7 @@ const login = async (req, res) => {
         name: user.name,
         email: user.email,
         token: token,
+        newuser:0
       },
     });
   } catch (error) {
