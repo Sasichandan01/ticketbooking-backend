@@ -33,7 +33,7 @@ const signup = async (req, res) => {
       } else {
         return res.status(400).json({
           success: false,
-          message: "Error: Invalid credentials",
+          message: "Error: Invalid credentials, User already exists",
         });
       }
     } else {
