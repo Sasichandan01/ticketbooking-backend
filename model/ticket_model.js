@@ -41,8 +41,12 @@ const detailSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  review: String,
+  review: {
+    Story:{type:String},
+    Direction:{type:String},
+    Music:{type:String}
+  }
 });
-const User = new mongoose.model("mveuserdetails", detailSchema);
+const User = new mongoose.model("movieuserdetails", detailSchema);
 
 module.exports = User;

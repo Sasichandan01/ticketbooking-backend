@@ -2,12 +2,17 @@ const User = require("../model/ticket_model");
 
 const updateMovie = async (req, res) => {
   try {
-    const { movieId, review } = req.body;
+    const { movieId, Story,Direction,Music } = req.body;
+    
     const updatedMovie = await User.findOneAndUpdate(
       { _id: movieId },
       {
         $set: {
-          review: review,
+          review:{
+            Story:Story,
+            Direction:Direction,
+            Music:Music
+          }
         },
       }
     );
